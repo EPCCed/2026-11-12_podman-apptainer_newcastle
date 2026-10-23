@@ -134,8 +134,7 @@ Let's break this file down:
   are the same commands that we used interactively above.
 - The last line, `CMD`, indicates the default command we want a
   container based on this container image to run, if no other command is provided. It is recommended
-  to provide `CMD` in *exec-form* (see the
-  (see the [`CMD` section](https://github.com/containers/common/blob/main/docs/Containerfile.5.md)
+  to provide `CMD` in *exec-form* (see the [`CMD` section](https://github.com/containers/common/blob/main/docs/Containerfile.5.md)
   of the documentation of the Containers GitHub for more details). It is written as a
   list which contains the executable to run as its first element,
   optionally followed by any arguments as subsequent elements. The list
