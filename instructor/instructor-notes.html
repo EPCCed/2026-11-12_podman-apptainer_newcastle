@@ -40,8 +40,11 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="incubator-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo.svg">
-</div>
+        <a href="index.html">
+        <img id="incubator-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo.svg"></a>
+
+
+      </div>
     </div>
     <div class="selector-container">
       <menu class="theme-selector" id="theme-selector-menu">
@@ -87,8 +90,9 @@
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo-sm.svg">
-</div>
+      <a href="index.html">
+      <img class="small-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo-sm.svg"></a>
+    </div>
     <div class="lesson-title-md">
       Reproducible Computational Environments Using Containers: Introduction to Podman and Apptainer
     </div>
@@ -139,7 +143,7 @@
       </fieldset>
     </form>
     -->
-    <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+    <a id="search-button-nav" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
 </nav><div class="container">
@@ -151,6 +155,9 @@
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
+          <div class="row mobile-row" id="theme-row-mobile">
+            <a id="search-button-sidebar" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+          </div>
           <div class="row mobile-row" id="theme-row-mobile">
             <menu class="col theme-selector" id="theme-selector-sidebar">
 <li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
@@ -199,6 +206,7 @@
 <!--/div.accordion-item-->
                 </div>
 <!--/div.accordion-flush-->
+
               </div>
 <!--div.sidenav-view-selector -->
             </div>
@@ -355,6 +363,34 @@
             </div>
 
             <hr class="half-width">
+<div class="accordion accordion-flush" id="accordion-links-toggle">
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading-links-toggle">
+                  <button class="accordion-button collapsed" id="links" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-links-toggle" aria-expanded="false" aria-controls="flush-collapse-links-toggle">
+                    LINKS
+                  </button>
+                </h2>
+                <div id="flush-collapse-links-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-links-toggle">
+                    <div class="accordion-body">
+                        <ul>
+<li>
+                            <a href="../instructor/key-points.html">Key Points</a>
+                            </li>
+                            <li>
+                            <a href="../instructor/instructor-notes.html">Instructor Notes</a>
+                            </li>
+                            <li>
+                            <a href="../instructor/images.html">Extract All Images</a>
+                            </li>
+                        </ul>
+</div>
+                </div>
+                </div>
+<!--/div.accordion-item-->
+            </div>
+<!--/div.accordion-flush-->
+
+            <hr class="half-width">
 <div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading-resources-toggle">
@@ -365,16 +401,7 @@
                 <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
-<li>
-                        <a href="../instructor/key-points.html">Key Points</a>
-                      </li>
-                      <li>
-                        <a href="../instructor/instructor-notes.html">Instructor Notes</a>
-                      </li>
-                      <li>
-                        <a href="../instructor/images.html">Extract All Images</a>
-                      </li>
-                      <li><a href="about.html">About</a></li>
+<li><a href="about.html">About</a></li>
 <hr>
 <li><a class="dropdown-item" href="06-containers-on-the-cloud.html">Creating Containers on the Cloud</a></li>
 <li><a class="dropdown-item" href="08-orchestration.html">Container Orchestration</a></li>
@@ -446,14 +473,14 @@ software installations.</li>
 <li>
 <strong>Install Issues</strong>: From the feedback we have received
 about past lessons, computers running Microsoft Windows have encountered
-the largest number of challenges setting up Docker. Consider having
+the largest number of challenges setting up Podman. Consider having
 people check their install in advance at a separate time or come early.
 In online workshops, consider using your video conferencing software’s
 “breakout room” functionality to form smaller groups within which
 participants can troubleshoot their installations. Note that you should
-use a more complex command than <code>docker --version</code> to test
-the installation, as the simplest <code>docker</code> commands to not
-connect to the Docker backend.</li>
+use a more complex command than <code>podman --version</code> to test
+the installation, as the simplest <code>podman</code> commands do not
+connect to the Podman backend.</li>
 <li>
 <strong>Virtualization Illustration</strong>: When going through the
 intro to containers, consider demonstrating what this might look like by
@@ -552,7 +579,7 @@ understand how to create his own container, use it locally, and train
 his student to use it as well.</p>
 <p>Considering things from a higher level, we also highlight three core
 groups of learners, based on job roles, who you may find attending
-lessons covering this material. While recognising that there are likely
+lessons covering this material. While recognizing that there are likely
 to be many learners who don’t fit into one of the following groups, or
 who span more than one of them, we hope that highlighting these groups
 helps to provide an example of the different types of skills and
@@ -652,7 +679,7 @@ audiences or areas of interest</p>
 <p><strong>Cloud computing</strong></p>
 <ul>
 <li>
-<em>Common learner profiles:</em> Sytems professional, RSE</li>
+<em>Common learner profiles:</em> Systems professional, RSE</li>
 </ul>
 </li>
 <li>
@@ -671,7 +698,7 @@ professional</li>
 <ul>
 <li>difference between a container and container image</li>
 <li>what it means for a container to be stopped (but not removed)</li>
-<li>differences in container behaviour between hosts that are running
+<li>differences in container behavior between hosts that are running
 Linux compared to hosts running macOS or Microsoft Windows
 <ul>
 <li>on Linux hosts there is usually only one OS kernel shared between
@@ -704,11 +731,11 @@ user and group mappings between the host and the container.</li>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/EPCCed/2026-10-07_podman-apptainer_imperial/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/EPCCed/2026-11-12_podman-apptainer_newcastle/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/EPCCed/2026-10-07_podman-apptainer_imperial/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/EPCCed/2026-10-07_podman-apptainer_imperial/" class="external-link">Source</a></p>
+        | <a href="https://github.com/EPCCed/2026-11-12_podman-apptainer_newcastle/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/EPCCed/2026-11-12_podman-apptainer_newcastle/" class="external-link">Source</a></p>
         <p>
         <a href="../citation.html">Cite</a>
         | <a href="mailto:a.turner@epcc.ed.ac.uk">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
@@ -718,7 +745,7 @@ user and group mappings between the host and the container.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.2)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.3)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -740,9 +767,9 @@ user and group mappings between the host and the container.</li>
   "creativeWorkStatus": "active",
   "url": "https://preview.carpentries.org/docker-introduction/instructor/instructor-notes.html",
   "identifier": "https://preview.carpentries.org/docker-introduction/instructor/instructor-notes.html",
-  "dateCreated": "2026-09-18",
-  "dateModified": "2026-09-18",
-  "datePublished": "2026-09-18"
+  "dateCreated": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "datePublished": "2026-10-23"
 }
 
   </script><script>
@@ -751,7 +778,7 @@ user and group mappings between the host and the container.</li>
           var _paq = window._paq = window._paq || [];
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
           _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-          _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io", "*.carpentries.github.io"]]);
+          _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.hpc-carpentry.github.io","*.hpc-carpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io", "*.carpentries.github.io"]]);
           _paq.push(["setDoNotTrack", true]);
           _paq.push(["disableCookies"]);
           _paq.push(["trackPageView"]);
