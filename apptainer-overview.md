@@ -70,11 +70,25 @@ replace references to `apptainer` with `singularity`, if you wish.
 
 ## Checking Apptainer works
 
+Login to either Comet or Cirrus.
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Cirrus login
+
 [Login to Cirrus](https://docs.cirrus.ac.uk/user-guide/connecting/) using the
 login address `login.cirrus.ac.uk`:
 
 ```bash
 ssh -i /path/to/ssh-key user@login.cirrus.ac.uk
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+On Comet you need to load the `apptianer` module (this is not needed on Cirrus):
+
+```bash
+comet$ module load apptainer
 ```
 
 Now check that the `apptainer` command is available in your terminal:
@@ -285,9 +299,9 @@ There is a default configuration of which files and directories are bound into t
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Files in Singularity containers
+## Files in Apptainer containers
 
-**Q1:** What do you notice about the ownership of files in a container started from the `lolcow.sif` image? (e.g. take a look at the ownership of files in the root directory (`/`) and your home directory (`~/`)).
+**Q1:** What do you notice about the ownership of files in a container started from the `python-slim.sif` image? (e.g. take a look at the ownership of files in the root directory (`/`) and your home directory (`~/`)).
 
 **Exercise 1:** In this container, try creating a file in the root directory `/` (e.g. using `touch /myfile.dat`). What do you notice? Try removing the `/singularity` file. What happens in these two cases?
 
@@ -314,17 +328,37 @@ You will sometimes need to bind additional host system directories into a contai
 - There may be a shared dataset in a location that you need access to in the container
 - You may require executables and software libraries from the host system in the container
 
-The `-B` option to the `apptainer` command is used to specify additional binds. For example, to bind the `/opt/cray` directory (where the HPE Cray programming environment is stored) into a container you could use:
+The `-B` option to the `apptainer` command is used to specify additional binds. For example, to bind:
+
+- Comet: `/nobackup` directory into a container
+- Cirrus:  `/opt/cray` directory into a container
+
 
 ```bash
-remote$ apptainer shell -B /opt/cray python-slim.sif
+comet$ apptainer shell -B /nobackup python-slim.sif
+Apptainer> ls -la /nobackup
+```
+
+or 
+
+```bash
+cirrus$ apptainer shell -B /opt/cray python-slim.sif
 Apptainer> ls -la /opt/cray
 ```
 
 Note that, by default, a bind is mounted at the same path in the container as on the host system. You can also specify where a host directory is mounted in the container by separating the host path from the container path by a colon (`:`) in the option:
 
+Comet:
+
 ```bash
-remote$ apptainer shell -B /opt/cray:/cpe python-slim.sif
+comet$ apptainer shell -B /nobackup:/nb python-slim.sif
+Apptainer> ls -la /cpe
+```
+
+or, Cirrus:
+
+```bash
+cirrus$ apptainer shell -B /opt/cray:/cpe python-slim.sif
 Apptainer> ls -la /cpe
 ```
 
@@ -333,8 +367,8 @@ You can specify multiple binds to `-B` by separating them by commas (`,`).
 Another option is to specify the paths you want to bind in the `APPTAINER_BIND` environment variable. This can be more convenient when you have a lot of paths you want to bind into the running container For example, to bind the locations that contain both the HPE Cray programming environment and the CSE centrally installed software into a running container, we would use:
 
 ```bash
-remote$ export APPTAINER_BIND="/opt/cray,/epccfs/y07/shared/cirrus-ex"
-remote$ apptainer shell python-slim.sif
+cirrus$ export APPTAINER_BIND="/opt/cray,/epccfs/y07/shared/cirrus-ex"
+cirrus$ apptainer shell python-slim.sif
 Apptainer> ls -la /epccfs/y07/shared/cirrus-ex
 ```
 
