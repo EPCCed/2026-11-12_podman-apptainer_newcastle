@@ -27,7 +27,7 @@ life_cycle: 'stable'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/EPCCed/2026-10-07_podman-apptainer_imperial'
+source: 'https://github.com/EPCCed/2026-11-12_podman-apptainer_newcastle'
 
 # Default branch of your lesson
 branch: 'main'
