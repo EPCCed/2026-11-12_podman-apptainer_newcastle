@@ -490,19 +490,38 @@ can simply replace references to <code>apptainer</code> with
 </div>
 </div>
 </section><section><h2 class="section-heading" id="checking-apptainer-works">Checking Apptainer works<a class="anchor" aria-label="anchor" href="#checking-apptainer-works"></a></h2>
-<hr class="half-width"><p><a href="https://docs.cirrus.ac.uk/user-guide/connecting/" class="external-link">Login to
+<hr class="half-width"><p>Login to either Comet or Cirrus.</p>
+<div id="cirrus-login" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="cirrus-login" class="callout-inner">
+<h3 class="callout-title">Cirrus login</h3>
+<div class="callout-content">
+<p><a href="https://docs.cirrus.ac.uk/user-guide/connecting/" class="external-link">Login to
 Cirrus</a> using the login address <code>login.cirrus.ac.uk</code>:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">ssh</span> <span class="at">-i</span> /path/to/ssh-key user@login.cirrus.ac.uk</span></code></pre>
 </div>
-<p>Now check that the <code>apptainer</code> command is available in
-your terminal:</p>
+</div>
+</div>
+</div>
+<p>On Comet you need to load the <code>apptianer</code> module (this is
+not needed on Cirrus):</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">remote$</span> apptainer <span class="at">--version</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">comet$</span> module load apptainer</span></code></pre>
+</div>
+<p>Now check that the <code>apptainer</code> command is available in
+your terminal:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">remote$</span> apptainer <span class="at">--version</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -519,10 +538,10 @@ your terminal:</p>
 <div class="callout-content">
 <p>HPC systems often use <em>modules</em> to provide access to software
 on the system so you may need to use the command:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">remote$</span> module load apptainer</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">remote$</span> module load apptainer</span></code></pre>
 </div>
 <p>before you can use the <code>apptainer</code> command on remote
 systems. However, this depends on how the system is configured. You do
@@ -562,12 +581,12 @@ image files automatically.</p>
 <p>Let’s begin by creating a <code>test</code> directory, changing into
 it and <em>pulling</em> the same simple container image we did for
 Podman at the start of this workshop:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">remote$</span> mkdir test</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="ex">remote$</span> cd test</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="ex">remote$</span> apptainer pull hello.sif docker://quay.io/podman/hello</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">remote$</span> mkdir test</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="ex">remote$</span> cd test</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="ex">remote$</span> apptainer pull hello.sif docker://quay.io/podman/hello</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -590,10 +609,10 @@ the container image is in Docker/OCI format (the standard container
 image format) and Apptainer converted the OCI image to a SIF file. If
 you run the <code>ls</code> command, you should see that the
 <code>hello.sif</code> file is now present in the current directory.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">remote$</span> ls <span class="at">-lh</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">remote$</span> ls <span class="at">-lh</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -612,10 +631,10 @@ files. For example, suppose we have copied the
 <code>alpine-python.tar</code> container image file from our local
 system to the system with Apptainer, we can import and convert it
 with:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">remote$</span> apptainer build alpine-python.sif docker-archive:alpine-python.tar</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">remote$</span> apptainer build alpine-python.sif docker-archive:alpine-python.tar</span></code></pre>
 </div>
 <p>Note that the <code>docker-archive</code> format specifier uses a
 single <code>:</code> and not <code>://</code> as it is accessing a
@@ -640,10 +659,10 @@ platform they are running on.</p>
 <h3 id="running-an-apptainer-container">Running an Apptainer container<a class="anchor" aria-label="anchor" href="#running-an-apptainer-container"></a></h3>
 <p>We can now run a container based on the <code>hello.sif</code>
 container image:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">remote$</span> apptainer run hello.sif</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">remote$</span> apptainer run hello.sif</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -696,10 +715,10 @@ script that can be used to run commands, tools or applications stored
 within the container image on container startup. We can inspect the
 container image’s run script using the <code>apptainer inspect</code>
 command:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">remote$</span> apptainer inspect <span class="at">-r</span> hello.sif</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">remote$</span> apptainer inspect <span class="at">-r</span> hello.sif</span></code></pre>
 </div>
 <p>This shows us the script within the <code>hello.sif</code> container
 image configured to run by default when we use the
@@ -811,16 +830,16 @@ you’re running on.</p>
 </div>
 </div>
 </div>
-<div id="files-in-singularity-containers" class="callout challenge">
+<div id="files-in-apptainer-containers" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="files-in-singularity-containers" class="callout-inner">
-<h3 class="callout-title">Files in Singularity containers</h3>
+<div id="files-in-apptainer-containers" class="callout-inner">
+<h3 class="callout-title">Files in Apptainer containers</h3>
 <div class="callout-content">
 <p><strong>Q1:</strong> What do you notice about the ownership of files
-in a container started from the <code>lolcow.sif</code> image?
+in a container started from the <code>python-slim.sif</code> image?
 (e.g. take a look at the ownership of files in the root directory
 (<code>/</code>) and your home directory (<code>~/</code>)).</p>
 <p><strong>Exercise 1:</strong> In this container, try creating a file
@@ -843,7 +862,7 @@ and the container shuts down?</p>
   Answers
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p><strong>A1:</strong> Use the <code>ls -l /</code> command to see a
 detailed file listing including file ownership and permission details.
@@ -880,24 +899,39 @@ in the container</li>
 <li>You may require executables and software libraries from the host
 system in the container</li>
 </ul><p>The <code>-B</code> option to the <code>apptainer</code> command is
-used to specify additional binds. For example, to bind the
-<code>/opt/cray</code> directory (where the HPE Cray programming
-environment is stored) into a container you could use:</p>
-<div class="codewrapper sourceCode" id="cb14">
+used to specify additional binds. For example, to bind:</p>
+<ul><li>Comet: <code>/nobackup</code> directory into a container</li>
+<li>Cirrus: <code>/opt/cray</code> directory into a container</li>
+</ul><div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">remote$</span> apptainer shell <span class="at">-B</span> /opt/cray python-slim.sif</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /opt/cray</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">comet$</span> apptainer shell <span class="at">-B</span> /nobackup python-slim.sif</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /nobackup</span></code></pre>
+</div>
+<p>or</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">cirrus$</span> apptainer shell <span class="at">-B</span> /opt/cray python-slim.sif</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /opt/cray</span></code></pre>
 </div>
 <p>Note that, by default, a bind is mounted at the same path in the
 container as on the host system. You can also specify where a host
 directory is mounted in the container by separating the host path from
 the container path by a colon (<code>:</code>) in the option:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<p>Comet:</p>
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">remote$</span> apptainer shell <span class="at">-B</span> /opt/cray:/cpe python-slim.sif</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /cpe</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">comet$</span> apptainer shell <span class="at">-B</span> /nobackup:/nb python-slim.sif</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /cpe</span></code></pre>
+</div>
+<p>or, Cirrus:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">cirrus$</span> apptainer shell <span class="at">-B</span> /opt/cray:/cpe python-slim.sif</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /cpe</span></code></pre>
 </div>
 <p>You can specify multiple binds to <code>-B</code> by separating them
 by commas (<code>,</code>).</p>
@@ -907,12 +941,12 @@ convenient when you have a lot of paths you want to bind into the
 running container For example, to bind the locations that contain both
 the HPE Cray programming environment and the CSE centrally installed
 software into a running container, we would use:</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">remote$</span> export APPTAINER_BIND=<span class="st">"/opt/cray,/epccfs/y07/shared/cirrus-ex"</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="ex">remote$</span> apptainer shell python-slim.sif</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1" aria-label="code-block-16-3"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /epccfs/y07/shared/cirrus-ex</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">cirrus$</span> export APPTAINER_BIND=<span class="st">"/opt/cray,/epccfs/y07/shared/cirrus-ex"</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="ex">cirrus$</span> apptainer shell python-slim.sif</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1" aria-label="code-block-19-3"></a><span class="ex">Apptainer</span><span class="op">&gt;</span> ls <span class="at">-la</span> /epccfs/y07/shared/cirrus-ex</span></code></pre>
 </div>
 <p>Finally, you will remember from discussing building container images
 using Podman that you can also copy data into a container image at build
