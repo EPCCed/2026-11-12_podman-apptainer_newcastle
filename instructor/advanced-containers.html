@@ -428,11 +428,19 @@ this page.</p>
 <section><h2 class="section-heading" id="using-scripts-and-files-from-outside-the-container">Using scripts and files from outside the container<a class="anchor" aria-label="anchor" href="#using-scripts-and-files-from-outside-the-container"></a></h2>
 <hr class="half-width"><p>In your shell, change to the <code>sum</code> folder in the
 <code>podman-intro</code> folder and look at the files inside.</p>
+<p>On Comet:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> cd ~/Desktop/podman-intro/sum</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> cd ~/podman-intro/sum</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ex">$</span> ls</span></code></pre>
+</div>
+<p>On a local system:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">$</span> cd ~/Desktop/podman-intro/sum</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">$</span> ls</span></code></pre>
 </div>
 <p>This folder has both a <code>Dockerfile</code> and a Python script
 called <code>sum.py</code>. Let’s say we wanted to try running the
@@ -460,10 +468,10 @@ script using a container based on our recently created
 <div class="accordion-body">
 <p>We can run a container from the alpine-python container image
 using:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-python python3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-python python3</span></code></pre>
 </div>
 <p>What happens? Since the <code>Dockerfile</code> that we built this
 container image from had a <code>CMD</code> entry that specified
@@ -474,10 +482,10 @@ the installed version of Python printed to the terminal.</p>
 <p>Instead, if we want to run an interactive Python terminal, we can use
 <code>podman container run</code> to override the default run command
 embedded within the container image. So we could run:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> alice/alpine-python python3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> alice/alpine-python python3</span></code></pre>
 </div>
 <p>The <code>-it</code> tells Podman to set up and interactive terminal
 connection to the running container, and then we’re telling Podman to
@@ -489,10 +497,10 @@ to exit!)</em></p>
 </div>
 </div>
 <p>If we try running the container and Python script, what happens?</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-python python3 sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-python python3 sum.py</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -552,10 +560,10 @@ Podman documentation</a>.</p>
 </div>
 </div>
 <p>Let’s try running the command now:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">$</span> podman container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp docker.io/alice/alpine-python python3 sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">$</span> podman container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp docker.io/alice/alpine-python python3 sum.py</span></code></pre>
 </div>
 <p>But we get the same error!</p>
 <div class="codewrapper">
@@ -568,10 +576,10 @@ ourselves inside the container. Where is the <code>sum.py</code> file?
 It’s in the directory that’s been mapped to <code>/temp</code> – so we
 need to include that in the path to the script. This command should give
 us what we need:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">$</span> podman container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp docker.io/alice/alpine-python python3 /temp/sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">$</span> podman container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp docker.io/alice/alpine-python python3 /temp/sum.py</span></code></pre>
 </div>
 <p>Note that if we create any files in the <code>/temp</code> directory
 while the container is running, these files will appear on our host
@@ -697,19 +705,19 @@ computer? What’s inside?</p>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>The Podman command to run the container interactively is:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">$</span> podman container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp <span class="at">-it</span> docker.io/alice/alpine-python sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">$</span> podman container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp <span class="at">-it</span> docker.io/alice/alpine-python sh</span></code></pre>
 </div>
 <p>Once inside, you should be able to navigate to the <code>/temp</code>
 folder and see that its contents are the same as the files on your host
 computer:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">/#</span> cd /temp</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">/#</span> ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">/#</span> cd /temp</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">/#</span> ls</span></code></pre>
 </div>
 </div>
 </div>
@@ -728,15 +736,15 @@ data. Let’s assume that we’ve finished with our <code>sum.py</code>
 script and want to add it to the container image itself.</p>
 <p>In your shell, you should still be in the <code>sum</code> folder in
 the <code>podman-intro</code> folder.</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">$</span> pwd</span></code></pre>
-</div>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">$</span> /Users/yourname/Desktop/podman-intro/sum</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">$</span> pwd</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">$</span> /Users/yourname/Desktop/podman-intro/sum</span></code></pre>
 </div>
 <p>Let’s add a new line to the <code>Dockerfile</code> we’ve been using
 so far to create a copy of <code>sum.py</code>. We can do so by using
@@ -745,10 +753,10 @@ the <code>COPY</code> keyword.</p>
 <p>This line will cause Podman to copy the file from your computer into
 the container’s filesystem. Let’s build the container image like before,
 but give it a different name:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum .</span></code></pre>
 </div>
 <div id="the-importance-of-command-order-in-a-dockerfile" class="callout">
 <div class="callout-square">
@@ -799,17 +807,17 @@ this one. Once inside, try running the Python script.</p>
 <div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>You can start the container interactively like so:</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> docker.io/alice/alpine-sum sh</span></code></pre>
-</div>
-<p>You should be able to run the python command inside the container
-like this:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">/#</span> python3 /home/sum.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> docker.io/alice/alpine-sum sh</span></code></pre>
+</div>
+<p>You should be able to run the python command inside the container
+like this:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">/#</span> python3 /home/sum.py</span></code></pre>
 </div>
 </div>
 </div>
@@ -878,16 +886,16 @@ the Grace or Vera CPUs have Arm architecture).</p>
 architecture (the x86_64 architecture is labelled as <code>amd64</code>
 for historic reasons - AMD invented the x86_64 architecture
 specification):</p>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="ex">podman</span> image build <span class="at">--platform</span><span class="op">=</span>linux/amd64 <span class="at">-t</span> docker.io/alice/alpine-sum:x86 .</span></code></pre>
-</div>
-<p>or, to build specifically for Arm architecture:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">podman</span> image build <span class="at">--platform</span><span class="op">=</span>linux/arm64 <span class="at">-t</span> docker.io/alice/alpine-sum:arm64 .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">podman</span> image build <span class="at">--platform</span><span class="op">=</span>linux/amd64 <span class="at">-t</span> docker.io/alice/alpine-sum:x86 .</span></code></pre>
+</div>
+<p>or, to build specifically for Arm architecture:</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="ex">podman</span> image build <span class="at">--platform</span><span class="op">=</span>linux/arm64 <span class="at">-t</span> docker.io/alice/alpine-sum:arm64 .</span></code></pre>
 </div>
 </div>
 </div>
@@ -906,19 +914,19 @@ COPY sum.py /home
 # Run the sum.py script as the default command
 CMD ["python3", "/home/sum.py"]</code></pre>
 <p>Build and test it:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum:v1 .</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum:v1 .</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1" aria-label="code-block-24-2"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v1</span></code></pre>
 </div>
 <p>You’ll notice that you can run the container without arguments just
 fine, resulting in <code>sum = 0</code>, but this is boring. Supplying
 arguments however doesn’t work:</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">podman</span> container run docker.io/alice/alpine-sum:v1 10 11 12</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="ex">podman</span> container run docker.io/alice/alpine-sum:v1 10 11 12</span></code></pre>
 </div>
 <p>results in</p>
 <div class="codewrapper">
@@ -948,14 +956,14 @@ ENTRYPOINT ["python3", "/home/sum.py"]
 # the command-line
 CMD ["10", "11"]</code></pre>
 <p>Build and test it:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum:v2 .</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="co"># Most of the time you are interested in the sum of 10 and 11:</span></span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1" aria-label="code-block-27-3"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v2</span>
-<span id="cb27-4"><a href="#cb27-4" tabindex="-1" aria-label="code-block-27-4"></a><span class="co"># Sometimes you have more challenging calculations to do:</span></span>
-<span id="cb27-5"><a href="#cb27-5" tabindex="-1" aria-label="code-block-27-5"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v2 12 13 14</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum:v2 .</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1" aria-label="code-block-28-2"></a><span class="co"># Most of the time you are interested in the sum of 10 and 11:</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1" aria-label="code-block-28-3"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v2</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1" aria-label="code-block-28-4"></a><span class="co"># Sometimes you have more challenging calculations to do:</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1" aria-label="code-block-28-5"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v2 12 13 14</span></code></pre>
 </div>
 <div id="overriding-the-entrypoint" class="callout">
 <div class="callout-square">
@@ -968,10 +976,10 @@ CMD ["10", "11"]</code></pre>
 <p>Sometimes you don’t want to run the image’s <code>ENTRYPOINT</code>.
 For example if you have a specialized container image that does only
 sums, but you need an interactive shell to examine the container:</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> docker.io/alice/alpine-sum:v2 /bin/sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> docker.io/alice/alpine-sum:v2 /bin/sh</span></code></pre>
 </div>
 <p>will yield</p>
 <div class="codewrapper">
@@ -981,10 +989,10 @@ sums, but you need an interactive shell to examine the container:</p>
 </div>
 <p>You need to override the <code>ENTRYPOINT</code> statement in the
 container image like so:</p>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1" aria-label="code-block-30-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> <span class="at">--entrypoint</span> /bin/sh docker.io/alice/alpine-sum:v2</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a><span class="ex">$</span> podman container run <span class="at">-it</span> <span class="at">--entrypoint</span> /bin/sh docker.io/alice/alpine-sum:v2</span></code></pre>
 </div>
 </div>
 </div>
@@ -1003,11 +1011,11 @@ RUN chmod +x /home/sum.py
 # add /home folder to the PATH
 ENV PATH /home:$PATH</code></pre>
 <p>Build and test it:</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1" aria-label="code-block-32-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum:v3 .</span>
-<span id="cb32-2"><a href="#cb32-2" tabindex="-1" aria-label="code-block-32-2"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v3 sum.py 1 2 3 4</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">$</span> podman image build <span class="at">-t</span> docker.io/alice/alpine-sum:v3 .</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1" aria-label="code-block-33-2"></a><span class="ex">$</span> podman container run docker.io/alice/alpine-sum:v3 sum.py 1 2 3 4</span></code></pre>
 </div>
 <div id="best-practices-for-writing-dockerfiles" class="callout">
 <div class="callout-square">
