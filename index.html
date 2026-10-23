@@ -475,11 +475,67 @@ relevant lesson episodes.</li>
 <em>This file can alternatively be downloaded from the
 <code>files</code> directory in the <a href="https://github.com/carpentries-incubator/docker-introduction/blob/gh-pages/files/podman-intro.zip" class="external-link">docker-introduction
 GitHub repository</a></em>.</p>
-<p>Move the downloaded file to your Desktop and unzip it. It should
-unzip to a folder called <code>podman-intro</code>.</p>
+<p>Move the downloaded file to your Desktop or home directory (if you
+are using Podman on a remote system) and unzip it. It should unzip to a
+folder called <code>podman-intro</code>.</p>
+<div id="use-wget-to-download-onto-remote-systems" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="use-wget-to-download-onto-remote-systems" class="callout-inner">
+<h3 class="callout-title">Use <code>wget</code> to download onto remote
+systems</h3>
+<div class="callout-content">
+<p>You can usually download the zip file directly to a remote system
+using the following <code>wget</code> command:</p>
+<pre><code>wget https://epcced.github.io/2026-11-12_podman-apptainer_newcastle/files/podman-intro.zip</code></pre>
+<p>You can then inflate it with the <code>unzip</code> command:</p>
+<pre><code>unzip podman-intro.zip</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="section level3">
-<h3 id="software-to-install">Software to install<a class="anchor" aria-label="anchor" href="#software-to-install"></a></h3>
+<h3 id="podman-setup">Podman setup<a class="anchor" aria-label="anchor" href="#podman-setup"></a></h3>
+<p>If you are attending as a student or member of staff from Newcastle
+University you will use Podman on the Comet HPC system so you do not
+need to install it locally. Follow the “Setup Podman on Comet”
+instructions instead.</p>
+<p>If you are not from Newcatle University, follow the “Podman Desktop
+Install” instructions.</p>
+</div>
+<div class="section level3">
+<h3 id="setup-podman-on-comet-newcastle-hpc-system">Setup Podman on Comet (Newcastle HPC system)<a class="anchor" aria-label="anchor" href="#setup-podman-on-comet-newcastle-hpc-system"></a></h3>
+<p>Before running <em>any</em> podman commands on Comet you
+<em>must</em> configure Podman to run correctly on the architecture of
+the HPC</p>
+<p>Configure Podman storage:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> mkdir <span class="at">-p</span> <span class="va">$HOME</span>/.config/containers</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">$</span> nano <span class="va">$HOME</span>/.config/containers/storage.conf</span></code></pre>
+</div>
+<p><code>storage.conf</code> should be as follows:</p>
+<pre><code>[storage]
+driver = "overlay"
+runroot = "/tmp/podman_n1234"
+graphroot = "/mnt/nfs/home/n1234/podman_images"
+
+[storage.options.overlay]
+force_mask = "private"</code></pre>
+<p>Where <code>n1234</code> is your University username.</p>
+<p>Load the Podman module and test:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">$</span> module load Podman</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="ex">$</span> podman version</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="podman-desktop-install">Podman Desktop Install<a class="anchor" aria-label="anchor" href="#podman-desktop-install"></a></h3>
 <p>In most cases, you will need to have administrator rights on the
 computer in order to install the Podman software. If you are using a
 computer managed by your organization and do not have administrator
@@ -565,10 +621,11 @@ website’s documentation</a>.</p>
 <h3 id="verify-installation">Verify Installation<a class="anchor" aria-label="anchor" href="#verify-installation"></a></h3>
 <p>To quickly check if Podman is working run the following command in a
 new terminal or ssh session:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<p>(On )</p>
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> podman version</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">$</span> podman version</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
