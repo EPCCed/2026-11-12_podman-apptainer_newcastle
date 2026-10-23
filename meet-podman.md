@@ -37,6 +37,14 @@ the application starts. This will require you to use your Docker Hub username
 and your password. We will not actually require access to the Docker Hub until
 later in the course but if you can login now, you should do so.
 
+If you are not using Podman Desktop, you can login the Docker Hub registry from
+the command line with:
+
+```
+podman login docker.io
+```
+
+You will be prompted for your Docker Hub username and password.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -44,8 +52,7 @@ later in the course but if you can login now, you should do so.
 
 ## Determining your Docker Hub username
 
-If you no longer recall your Docker Hub username, e.g., because you have been logging into the Docker Hub using your email address,
-you can find out what it is through the steps:
+If you no longer recall your Docker Hub username, e.g., because you have been logging into the Docker Hub using your email address, you can find out what it is through the steps:
 
 - Open [https://hub.docker.com/](https://hub.docker.com/) in a web browser window
 - Sign-in using your email and password (don't tell us what it is)
