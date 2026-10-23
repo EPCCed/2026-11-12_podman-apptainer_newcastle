@@ -12,9 +12,65 @@ Please seek help at the start of the lesson if you have not been able to establi
 
 Download the [`podman-intro.zip`](files/podman-intro.zip) file. *This file can alternatively be downloaded from the `files` directory in the [docker-introduction GitHub repository](https://github.com/carpentries-incubator/docker-introduction/blob/gh-pages/files/podman-intro.zip)*.
 
-Move the downloaded file to your Desktop and unzip it. It should unzip to a folder called `podman-intro`.
+Move the downloaded file to your Desktop or home directory (if you are using Podman on a remote system) and unzip it. It should unzip to a folder called `podman-intro`.
 
-### Software to install
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Use `wget` to download onto remote systems
+
+You can usually download the zip file directly to a remote system using the following `wget` command:
+
+```
+wget https://epcced.github.io/2026-11-12_podman-apptainer_newcastle/files/podman-intro.zip
+```
+
+You can then inflate it with the `unzip` command:
+
+```
+unzip podman-intro.zip
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Podman setup
+
+If you are attending as a student or member of staff from Newcastle University you will use Podman on the Comet HPC system so you do not need to install it locally. Follow the "Setup Podman on Comet" instructions instead.
+
+If you are not from Newcatle University, follow the "Podman Desktop Install" instructions.
+
+### Setup Podman on Comet (Newcastle HPC system)
+
+Before running *any* podman commands on Comet you *must* configure Podman to run correctly on the architecture of the HPC
+
+Configure Podman storage:
+
+```bash
+$ mkdir -p $HOME/.config/containers
+$ nano $HOME/.config/containers/storage.conf
+```
+
+`storage.conf` should be as follows:
+
+```
+[storage]
+driver = "overlay"
+runroot = "/tmp/podman_n1234"
+graphroot = "/mnt/nfs/home/n1234/podman_images"
+
+[storage.options.overlay]
+force_mask = "private"
+```
+
+Where `n1234` is your University username.
+
+Load the Podman module and test:
+
+```bash
+$ module load Podman
+$ podman version
+```
+
+### Podman Desktop Install
 
 In most cases, you will need to have administrator rights on the computer in order to install the Podman software. If you are using a computer managed by your organization and do not have administrator rights, you *may* be able to get your organization's IT staff to install Podman for you. Alternatively your IT support staff *may* be able to give you remote access to a server that can run Podman commands.
 
@@ -73,6 +129,8 @@ Ideally, you will be able to install the Podman Desktop, following the [Podman D
 ### Verify Installation
 
 To quickly check if Podman is working run the following command in a new terminal or ssh session:
+
+(On )
 
 ```bash
 $ podman version
