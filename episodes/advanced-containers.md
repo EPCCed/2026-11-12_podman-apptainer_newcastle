@@ -37,6 +37,15 @@ using the first 1--2 sections on this page.
 In your shell, change to the `sum` folder in the `podman-intro` folder and look at
 the files inside.
 
+On Comet:
+
+```bash
+$ cd ~/podman-intro/sum
+$ ls
+```
+
+On a local system:
+
 ```bash
 $ cd ~/Desktop/podman-intro/sum
 $ ls

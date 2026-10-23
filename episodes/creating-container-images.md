@@ -116,6 +116,15 @@ also -- but remember that there is no problem with using the alternate
 From your shell, go to the folder you downloaded at the start of the lesson
 and print out the Dockerfile inside:
 
+On Comet:
+
+```bash
+$ cd ~/podman-intro/basic
+$ ls
+```
+
+On a local system:
+
 ```bash
 $ cd ~/Desktop/podman-intro/basic
 $ cat Dockerfile
